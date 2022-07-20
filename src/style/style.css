@@ -12,10 +12,6 @@
     font-size: 48px;
 }
 
-.title span {
-    color: #C01A6C;
-}
-
 .description-wrapper {
     margin-top: 60px;
     margin-bottom: 30px;
@@ -34,11 +30,6 @@
 .text-white {
     color: #fff;
     font-size: 16px;
-}
-
-.text span,
-.text a {
-    color: #C01A6C;
 }
 
 .input {
