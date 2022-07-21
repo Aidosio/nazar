@@ -11,35 +11,42 @@
       </div>
       <div class="licence">
         <h2 class="title">ЛИЦЕНЗИИ</h2>
-        <div class="licence__items" id="lightgallery">
-          <a class="licence__item" :href="licences.licence" v-for="licences in achievements.licences" :key="licences.id">
-            <img :src="licences.licence" alt="image">
-          </a>
-        </div>
+        <photo-provider class="licence__items">
+          <photo-consumer class="licence__item" v-for="src in achievements.licences" :intro="src.licence" :key="src.id" :src="src.licence">
+            <img :src="src.licence" class="view-box">
+          </photo-consumer>
+        </photo-provider>
       </div>
       <div class="certificate">
         <h2 class="title">СЕРТИФИКАТЫ</h2>
-        <div class="certificate__items" id="lightgallery2">
-          <a class="certificate__item" :href="certificate.certificate" v-for="certificate in achievements.certificate" :key="certificate.id">
-            <img :src="certificate.certificate" alt="image">
-          </a>
-        </div>
+        <photo-provider class="licence__items">
+          <photo-consumer class="licence__item" v-for="src in imgList" :intro="src.certificate" :key="src.id" :src="src.certificate">
+            <img :src="src.certificate" class="view-box">
+          </photo-consumer>
+        </photo-provider>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {PhotoConsumer, PhotoProvider} from "vue3-photo-preview";
 export default {
   name: "AchievementsView",
+  components: {
+    PhotoProvider,
+    PhotoConsumer,
+  },
   data() {
     return {
-      achievements : {}
+      achievements : {},
+      imgList: []
     }
   },
   created() {
     this.axios.get('api/achievements').then(res => {
       this.achievements = res.data
+      this.imgList = res.data.certificate
     })
   }
 }

@@ -4,6 +4,9 @@ import router from './router'
 import store from './store'
 import axios from "axios";
 
+import vue3PhotoPreview from 'vue3-photo-preview';
+import 'vue3-photo-preview/dist/index.css';
+
 import v_menu from './ui/vMenu'
 import vContainer from './ui/vContainer'
 import vFooter from './ui/vFooter'
@@ -22,5 +25,5 @@ app.component('vFooter', vFooter)
 app.config.globalProperties.axios = axios
 
 app.use(store)
-    .use(router, axios)
+    .use(router, axios, vue3PhotoPreview)
     .mount('#app')
