@@ -17,9 +17,9 @@ const routes = [
     component: () => import("@/views/ContactView")
   },
   {
-    path: '/water-management',
-    name: 'water-management',
-    component: () => import("@/views/WaterManagementView")
+    path: '/service/:id',
+    name: 'service',
+    component: () => import("@/views/ServiceView")
   },
 ]
 

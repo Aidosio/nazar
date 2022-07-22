@@ -1018,7 +1018,6 @@
     width: calc(33% - 15px);
     color: #fff;
     background-color: rgba(39, 45, 48, 0.6);
-    background-image: url(../assets/solutions-bg.png);
     background-size: cover;
     background-position: center center;
     padding-left: 15px;
@@ -1027,6 +1026,15 @@
     padding-top: 90px;
     padding-bottom: 30px;
     margin-bottom: 85px;
+}
+
+.solutions__item .background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: -1;
 }
 
 .solutions__icon {
@@ -1091,7 +1099,7 @@
 .water-management {
     padding-top: 180px;
     margin-bottom: 140px;
-    background: url("../assets/bg-water.png") center center/contain no-repeat;
+    background: url("../assets/bg-default.png") center center/contain no-repeat;
 }
 
 @media screen and (max-width: 1400px) {
@@ -1691,7 +1699,7 @@
     }
 
     .water-management {
-        background: url("../assets/bg-water-m.png") top center/contain no-repeat;
+        background: url("../assets/bg-default-m.png") top center/contain no-repeat;
     }
 }
 

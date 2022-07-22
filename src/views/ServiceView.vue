@@ -8,14 +8,15 @@
       <div class="advantages-list">
         <div class="advantages-list__item" v-for="tegs in services.tegs" :key="tegs.id">{{ tegs.title }}</div>
       </div>
+      <vCard :cards="services.cards"/>
       <swiper
-          :slidesPerView="4"  
+          :slidesPerView="(width > 1000) ? 4 : (width < 700) ? 1 : 2 "
           :spaceBetween="30"
           :modules="modules"
           class="mySwiper"
       >
         <swiper-slide v-for="images in services.images" :key="images">
-          <img :src="images" :alt="images">
+          <img :src="images" :alt="images" class="image">
         </swiper-slide>
       </swiper>
     </div>
@@ -45,12 +46,20 @@ export default {
     return {
       services: {},
       modules: [Navigation],
+      width: 0
     }
   },
   created() {
-    this.axios.get('/api/service/1').then(res => {
+    this.axios.get(`/api/service/${this.$route.params.id}`).then(res => {
       this.services = res.data
     })
+    window.addEventListener('resize', this.updateWidth);
+    this.updateWidth();
+  },
+  methods: {
+    updateWidth() {
+      this.width = window.innerWidth
+    }
   }
 }
 </script>

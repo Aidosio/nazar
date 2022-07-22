@@ -15,7 +15,12 @@
                   :key="services.id"
                   class="services-dropdown"
                   :class="{'is-active': isActive}">
-                <router-link class="services-dropdown__link" to="/water-management">{{ services.title }}</router-link>
+                <router-link class="services-dropdown__link" :to="{
+                  name: 'service',
+                  params: {
+                    id: services.id
+                  }
+                }">{{ services.title }}</router-link>
               </div>
             </div>
             <div class="header__item"><router-link class="header__link" to="/achievements">{{ menu.achievement }}</router-link>

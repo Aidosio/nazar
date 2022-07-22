@@ -10,6 +10,7 @@ import 'vue3-photo-preview/dist/index.css';
 import v_menu from './ui/vMenu'
 import vContainer from './ui/vContainer'
 import vFooter from './ui/vFooter'
+import vCard from './ui/vCard'
 
 axios.defaults.baseURL = 'https://nasar.a-lux.dev'
 
@@ -20,6 +21,7 @@ app.use(store)
 app.component('vMenu', v_menu)
 app.component('vContainer', vContainer)
 app.component('vFooter', vFooter)
+app.component('vCard', vCard)
 
 
 app.config.globalProperties.axios = axios
