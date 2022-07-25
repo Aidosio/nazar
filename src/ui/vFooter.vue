@@ -19,15 +19,11 @@
 <script>
 export default {
   name: "vFooter",
-  data() {
-    return {
-      footer: {}
+  props: {
+    footer: {
+      type: Object,
+      required: true
     }
-  },
-  created() {
-    this.axios.get('/api/title').then(res => {
-      this.footer = res.data
-    })
   }
 }
 </script>

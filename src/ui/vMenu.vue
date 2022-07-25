@@ -47,7 +47,12 @@
                  :key="services.id"
                  class="services-dropdown"
                  :class="{'is-active': isActive}">
-              <router-link class="services-dropdown__link" to="/water-management">{{ services.title }}</router-link>
+              <router-link class="services-dropdown__link" :to="{
+                  name: 'service',
+                  params: {
+                    id: services.id
+                  }
+                }">{{ services.title }}</router-link>
             </div>
           </div>
           <div class="burger-menu__item"><router-link class="burger-menu__link" to="/achievements">{{ menu.achievement }}</router-link>
@@ -63,19 +68,17 @@
 <script>
 export default {
   name: "vMenu",
-
+  props: {
+    menu: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      menu: {},
       isActive: false,
       isOpen: false,
     }
-  },
-
-  created() {
-    this.axios('/api/title').then(response => {
-      this.menu = response.data
-    })
   },
 }
 </script>

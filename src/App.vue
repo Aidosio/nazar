@@ -1,11 +1,21 @@
 <template>
-  <vMenu />
+  <vMenu :menu="content" />
   <router-view />
-  <vFooter />
+  <vFooter :footer="content" />
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      content: {}
+    }
+  },
+  created() {
+    this.axios.get('/api/title').then(res => {
+      this.content = res.data
+    })
+  }
 }
 </script>
 

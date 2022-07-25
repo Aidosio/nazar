@@ -1,13 +1,17 @@
+
 <template>
-  <div class="main-hero">
-    <div class="main-hero__inner container">
-      <h1 class="title" v-html="index.main.title" />
-      <h2 class="subtitle" v-html="index.main.content" />
+  <vLoader v-if="index === null" />
+  <div v-else>
+    <div class="main-hero">
+      <div class="main-hero__inner container">
+        <h1 class="title" v-html="index.main.title" />
+        <h2 class="subtitle" v-html="index.main.content" />
+      </div>
     </div>
+    <MainAboutComponent :about="index.about" :text="main.about"/>
+    <MainGoalComponent :mission="index.mission" :text="main.mission"/>
+    <MainWhyComponent :whys="index.why" :text="main.why"/>
   </div>
-  <MainAboutComponent :about="index.about" :text="titles.about"/>
-  <MainGoalComponent :mission="index.mission" :text="titles.mission"/>
-  <MainWhyComponent :whys="index.why" :text="titles.why"/>
 </template>
 
 <script>
@@ -20,20 +24,18 @@ export default {
   components: {MainWhyComponent, MainGoalComponent, MainAboutComponent},
   data() {
     return {
-      index: {},
-      titles: {}
+      index: null,
+      main: {}
     }
   },
-  created() {
-    this.axios.get('/api/index').then(res => {
+  async created() {
+    await this.axios.get('/api/title').then(res => {
+      this.main = res.data
+    })
+    await this.axios.get('/api/index').then(res => {
       this.index = res.data
     })
   },
-  mounted() {
-    this.axios.get('/api/title').then(res => {
-      this.titles = res.data
-    })
-  }
 }
 </script>
 

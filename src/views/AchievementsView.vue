@@ -1,5 +1,6 @@
 <template>
-  <div class="achievements">
+  <vLoader v-if="achievements === null" />
+  <div v-else class="achievements">
     <div class="container">
       <h1 class="title">ДОСТИЖЕНИЯ</h1>
       <div class="achievements__items">
@@ -39,7 +40,7 @@ export default {
   },
   data() {
     return {
-      achievements : {},
+      achievements : null,
       imgList: []
     }
   },

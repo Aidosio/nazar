@@ -11,6 +11,7 @@ import v_menu from './ui/vMenu'
 import vContainer from './ui/vContainer'
 import vFooter from './ui/vFooter'
 import vCard from './ui/vCard'
+import vLoader from './ui/vLoader'
 
 axios.defaults.baseURL = 'https://nasar.a-lux.dev'
 
@@ -22,6 +23,7 @@ app.component('vMenu', v_menu)
 app.component('vContainer', vContainer)
 app.component('vFooter', vFooter)
 app.component('vCard', vCard)
+app.component('vLoader', vLoader)
 
 
 app.config.globalProperties.axios = axios

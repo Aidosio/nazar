@@ -1,5 +1,6 @@
 <template>
-  <div class="contact">
+  <vLoader v-if="contacts === null" />
+  <div v-else class="contact">
     <div class="container">
       <h1 class="title">КОНТАКТНЫЕ ДАННЫЕ</h1>
       <div class="contact__inner">
@@ -32,7 +33,7 @@
         </div>
       </div>
     </div>
-    <vAlert v-if="!loader" :text="text" />
+    <vAlert v-if="show" :text="text" />
   </div>
 </template>
 
@@ -43,8 +44,9 @@ export default {
   components: {vAlert},
   data() {
     return {
-      contacts: {},
+      contacts: null,
       loader: true,
+      show: false,
       text: ''
     }
   },
@@ -56,16 +58,15 @@ export default {
   methods: {
     async onSend(event) {
       const formData = new FormData(event.target)
-
-      await this.axios.post('api/application', formData).then(res => {
-        res
-        this.loader = false
+      this.loader = false
+      await this.axios.post('api/application', formData).then(() => {
+        this.loader = true
+        this.show = true
         this.text = 'Данные успешно отправлены'
         setTimeout(() => {
-          this.loader = true
-        }, 2500)
-      }).catch(e => {
-        e
+          this.show = false
+        }, 1500)
+      }).catch(() => {
         this.text = 'Ошибка'
       })
     }
