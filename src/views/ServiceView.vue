@@ -1,6 +1,12 @@
 <template>
   <vLoader v-if="services === null" />
-  <div v-else class="water-management">
+  <div v-else class="services-block">
+    <div v-if="width > 768">
+      <img class="image_service" v-for="service in services.background" :key="service" :src="service.download_link" alt="">
+    </div>
+    <div v-else>
+      <img class="image_service" v-for="service in services.mobilebackground" :key="service" :src="service.download_link" alt="">
+    </div>
     <div class="container">
       <h1 v-if="services.title" class="title" v-html="services.title"></h1>
       <div v-if="services.content" class="description-wrapper">
@@ -84,5 +90,30 @@ export default {
 
 .solutions__slider-wrapper {
   z-index: 1;
+}
+
+.image_service {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: contain;
+  position: absolute;
+}
+//
+//.image_service:first-child {
+//  top: 150px;
+//  right: 0;
+//}
+//
+//.image_service:last-child {
+//  width: 30%;
+//  left: 0;
+//  top: 350px;
+//}
+
+
+.services-block {
+ padding-top: 180px;
+ margin-bottom: 140px;
 }
 </style>
