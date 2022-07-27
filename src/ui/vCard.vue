@@ -26,9 +26,9 @@
     </swiper-slide>
   </swiper>
   <div class="solutions__slider-wrapper" v-else>
-    <div class="solutions__items" v-for="card in cards" :key="card.id">
+    <div class="solutions__items">
       <div class="wrapper">
-        <div class="solutions__item">
+        <div class="solutions__item" v-for="card in cards" :key="card.id">
           <div class="solutions__icon"><img :src="card.logo" alt="icon">
           </div>
           <h3 class="solutions__subtitle">
@@ -126,6 +126,7 @@ export default {
   top: 0;
   right: 0;
   z-index: -1;
+  object-fit: cover;
 }
 
 .solutions__icon-mob {

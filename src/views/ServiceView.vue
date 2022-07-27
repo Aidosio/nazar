@@ -51,10 +51,17 @@ export default {
       width: 0
     }
   },
+  watch: {
+    '$route.params.id': {
+      immediate: true,
+      handler() {
+        this.axios.get(`/api/service/${this.$route.params.id}`).then(res => {
+          this.services = res.data
+        })
+      },
+    },
+  },
   created() {
-    this.axios.get(`/api/service/${this.$route.params.id}`).then(res => {
-      this.services = res.data
-    })
     window.addEventListener('resize', this.updateWidth);
     this.updateWidth();
   },
@@ -73,5 +80,9 @@ export default {
     object-fit: cover;
     border-radius: 100%;
   }
+}
+
+.solutions__slider-wrapper {
+  z-index: 1;
 }
 </style>

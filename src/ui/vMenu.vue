@@ -9,13 +9,15 @@
             <div class="header__item"><router-link class="header__link" to="/">{{ menu.about }}</router-link>
             </div>
             <div class="header__item services-link">
-              <a class="header__link" href="#" @click="isActive = !isActive">Услуги</a>
+              <a class="header__link" href="#" @mouseenter="isActive = true">Услуги</a>
               <div
-                  v-for="services in menu.services"
-                  :key="services.id"
+                  @mouseleave="isActive = false"
                   class="services-dropdown"
                   :class="{'is-active': isActive}">
-                <router-link class="services-dropdown__link" :to="{
+                <router-link v-for="services in menu.services"
+                             :key="services.id"
+                             class="services-dropdown__link"
+                             :to="{
                   name: 'service',
                   params: {
                     id: services.id

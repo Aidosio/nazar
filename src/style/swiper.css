@@ -51,5 +51,7 @@ body {
     margin-bottom: 40px;
 }
 
-
+.main-goal__img {
+    max-width: 575px;
+}
 
