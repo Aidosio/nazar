@@ -12,48 +12,27 @@
       <div v-if="services.content" class="description-wrapper">
         <p class="text" v-html="services.content"></p>
       </div>
-      <div v-if="services.tegs" class="advantages-list">
+      <div v-if="services.tegs.length" class="advantages-list">
         <div class="advantages-list__item" v-for="tegs in services.tegs" :key="tegs.id">{{ tegs.title }}</div>
       </div>
-      <vCard v-if="services.cards" :cards="services.cards"/>
-      <swiper
-          v-if="services.images"
-          :slidesPerView="(width > 1000) ? 4 : (width > 980) ? 3 : (width > 575) ? 2 : 1"
-          :spaceBetween="30"
-          :modules="modules"
-          class="mySwiper"
-      >
-        <swiper-slide v-for="images in services.images" :key="images">
-          <img :src="images" :alt="images" class="image">
-        </swiper-slide>
-      </swiper>
+      <vCard v-if="services.cards.length" :cards="services.cards"/>
+      <v-slider v-if="services.images.length" :images="services.images" :width="width"/>
     </div>
   </div>
 </template>
 
 <script>
-import {Swiper, SwiperSlide} from "swiper/vue";
 
-// Import Swiper styles
-import "swiper/css";
-
-import "swiper/css/pagination";
-
-import "../style/swiper.css";
-
-// import required modules
-import {Navigation} from "swiper";
+import VSlider from "@/ui/vSlider";
 
 export default {
   name: "ServiceView",
   components: {
-    Swiper,
-    SwiperSlide,
+    VSlider,
   },
   data() {
     return {
       services: null,
-      modules: [Navigation],
       width: 0
     }
   },
